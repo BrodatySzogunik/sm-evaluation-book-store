@@ -1,8 +1,30 @@
 <div class="row gy-5">
-  <div class="col-md text-center">
+  <div class="col-md text-center w-100">
     <h1>Book Search</h1>
     <mdb-form-control>
-      <input mdbInput type="text" id="searchInput" class="form-control" />
+      <input mdbInput type="text" id="searchInput" class="form-control" [(ngModel)] = 'bookFilter' />
     </mdb-form-control>
+    <button class="btn btn-primary mt-2" (click)="search()">Search</button>
+    <div class ="bg-primary rounded text-white w-25 mx-auto my-2">{{tableData.length}} results</div>
+    <table class="table" >
+      <thead>
+          <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Publish Year</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let album of tableData; let i = index" [attr.data-index]="i" >
+          
+            <td>{{i+1}}</td>
+            <td>{{album.title}}</td>
+            <td>{{album.author_name[0]}}</td>
+            <td>{{album.publish_year}}</td>
+        </tr>
+      </tbody>
+  </table>
   </div>
+
 </div>
